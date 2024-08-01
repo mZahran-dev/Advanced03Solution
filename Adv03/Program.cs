@@ -10,8 +10,8 @@ namespace Adv03
             #region part 01
             var books = new List<Book>
             {
-                new Book("123-4567890123", "Book1", new[] { "Author1" }, new DateTime(2023, 1, 1), 19.99m),
-                new Book("456-1237890123", "Book2", new[] { "Author2", "Author3" }, new DateTime(2022, 5, 15), 29.99m)
+                new Book("123-33", "Book1", new[] { "Author1" }, new DateTime(2023, 1, 1), 19.99m),
+                new Book("456-12", "Book2", new[] { "Author2", "Author3" }, new DateTime(2022, 5, 15), 29.99m)
             }; ;
 
 
@@ -44,7 +44,40 @@ namespace Adv03
             #endregion
 
             #region part 02
+            bool exists = books.Exists(b => b.Price > 20);
+            Console.WriteLine($"Exists: {exists}");
 
+            // Find
+            Book expensiveBook = books.Find(b => b.Price > 20);
+            Console.WriteLine($"Find: {expensiveBook}");
+
+            // FindAll
+            var expensiveBooks = books.FindAll(b => b.Price > 20);
+            Console.WriteLine("FindAll:");
+            foreach (var book in expensiveBooks)
+            {
+                Console.WriteLine(book);
+            }
+
+            // FindIndex
+            int index = books.FindIndex(b => b.Price > 20);
+            Console.WriteLine($"FindIndex: {index}");
+
+            // FindLast
+            Book lastExpensiveBook = books.FindLast(b => b.Price > 20);
+            Console.WriteLine($"FindLast: {lastExpensiveBook}");
+
+            // FindLastIndex
+            int lastIndex = books.FindLastIndex(b => b.Price > 20);
+            Console.WriteLine($"FindLastIndex: {lastIndex}");
+
+            // ForEach
+            Console.WriteLine("ForEach:");
+            books.ForEach(b => Console.WriteLine(b));
+
+            // TrueForAll
+            bool allExpensive = books.TrueForAll(b => b.Price > 10);
+            Console.WriteLine($"TrueForAll: {allExpensive}");
             #endregion
         }
     }
